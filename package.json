@@ -1,0 +1,20 @@
+{
+  "name": "invoice-app",
+  "version": "1.0.0",
+  "description": "desc",
+  "main": "index.js",
+  "private": true,
+  "workspaces" :[
+    "backend",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"yarn workspace backend dev\" \"yarn workspace client start\""
+  },
+  "repository": "https://github.com/uniqfadilah/monorepo-express-react-postgress-typescript.git",
+  "author": "uniqfadilah <uniqfadilah@gmail.con>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
