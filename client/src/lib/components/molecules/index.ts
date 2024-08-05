@@ -1,0 +1,1 @@
+export {default as MobieCard} from "./MovieCard"

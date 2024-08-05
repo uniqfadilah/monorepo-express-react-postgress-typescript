@@ -61,17 +61,20 @@ export class UserService {
       if (!isPasswordValid) {
         throw new ResponseError(401, 'User or password wrong');
       }
-
-      const updateTokenUser = await prismaClient.user.update({
-        where: {
-          username: user.username,
-        },
-        data: {
-          token: uuid(),
-        },
-      });
       const response = toUserResponse(user);
-      response.token = updateTokenUser.token!;
+      response.token = user.token!;
+      if (!user.token) {
+        const updateTokenUser = await prismaClient.user.update({
+          where: {
+            username: user.username,
+          },
+          data: {
+            token: uuid(),
+          },
+        });
+        response.token = updateTokenUser.token!;
+      }
+
       return response;
     } catch (error) {
       throw new ResponseError(401, 'User or password wrong');
